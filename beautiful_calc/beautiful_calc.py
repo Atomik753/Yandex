@@ -132,7 +132,7 @@ class Calc(QWidget):
             self.table.display(self.now_showing)
         else:
             self.now_showing, self.cache = '', ''
-            self.table.display('Error')
+            self.table.display('Error') # doesn't work
             sleep(2)
             self.table.display(0)
 
@@ -142,7 +142,7 @@ class Calc(QWidget):
             self.table.display(self.now_showing)
         except ValueError or DeprecationWarning:
             self.now_showing, self.cache = '', ''
-            self.table.display('Error')
+            self.table.display('Error') # doesn't work
             sleep(2)
             self.table.display(0)
 

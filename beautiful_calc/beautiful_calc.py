@@ -118,6 +118,8 @@ class Calc(QWidget):
         self.now_showing = str(eval(self.cache))
         self.table.display(rounder(float(self.now_showing)))
         self.cache = ''
+        if self.now_showing == '0':
+            self.now_showing = ''
 
     def dot(self):
         if '.' not in self.now_showing:
@@ -128,27 +130,27 @@ class Calc(QWidget):
 
     def sqrt(self):
         if self.now_showing[0] != '-':
-            self.now_showing = rounder(sqrt(float(self.now_showing)))
+            self.now_showing = str(rounder(sqrt(float(self.now_showing))))
             self.table.display(self.now_showing)
         else:
             self.now_showing, self.cache = '', ''
-            self.table.display('Error') # doesn't work
+            self.table.display('Error')
             sleep(2)
             self.table.display(0)
 
     def fact(self):
         try:
-            self.now_showing = rounder(factorial(float(self.now_showing)))
+            self.now_showing = str(rounder(factorial(float(self.now_showing))))
             self.table.display(self.now_showing)
         except ValueError or DeprecationWarning:
             self.now_showing, self.cache = '', ''
-            self.table.display('Error') # doesn't work
+            self.table.display('Error')
             sleep(2)
             self.table.display(0)
 
 
 def rounder(n):
-    return int(n) if n % 1 == 0 else float(f'{n:.4}')
+    return int(n) if n % 1 == 0 else float(f'{n:.2f}')
 
 
 if __name__ == '__main__':
